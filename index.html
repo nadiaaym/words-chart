@@ -1,25 +1,55 @@
 <html lang="en">
 
-<head>
+<head>  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-
+        body {
+            font-size: 100%;
+        }
+        .words {
+            font-size: 5em;
+        }
     </style>
 </head>
 
 <body>
+    <div class="words"> </div>
     <script src="data.js"></script>
     <script>
-function createNewArray(params) {
-    
-}
-// iterate over words. if doesnt exist, push, and set count to 1. if exist, add to count.
-// check the smaller count, set size, and so on
-// display words. size defined acording to count
+        const splitted = str.split(' ')
+        const newArr = splitted.filter(item => item !== '');
+        const dic = {};
 
+        function getAppearences(arr) {
+            arr.forEach(element => {
+                if (dic[element]) {
+                    dic[element] += 1
+                } else {
+                    dic[element] = 1;
+                }
+            });
+            return dic;
+        }
+        console.log(getAppearences(newArr));
 
+        const numberOfElements = newArr.length;
+        console.log("number of elemements: ", numberOfElements);
+
+        Object.keys(dic).forEach(function(item) {
+            const word = document.createElement('div');
+            word.classList.add('word');
+            word.innerHTML = item;
+            document.querySelector('.words').appendChild(word);
+
+            const relativeSize = (dic[item] / numberOfElements) * 5 + 'em';
+            console.log('key: ', item)
+            console.log('value: ', dic[item])
+            console.log('relative-size: ', relativeSize);
+
+            word.style.fontSize = relativeSize;
+        });
     </script>
 </body>
 
